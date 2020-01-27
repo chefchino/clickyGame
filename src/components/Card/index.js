@@ -2,9 +2,12 @@ import React from "react";
 import "./style.css";
 
 function Card(props) {
+    function handlePicked() {
+        console.log("clicked")
+    }
     return (
-        <div onClick={() => props.handlePicked(props.id)} className="card" >
-            <div className="img-container" >
+        <div  className="card" >
+            <div onClick={handlePicked}className="img-container" >
                 <img alt={props.name} src={props.image}/>
             </div>
         </div>
