@@ -1,35 +1,47 @@
-import React from "react";
+import React, {Component} from "react";
 import Card from "./components/Card"
 import Wrapper from "./components/Wrapper"
-import friends from "./friends.json";
+import Animals from "./Animals.json";
 import './App.css';
 
-class App extends React.Component {
+class App extends Component {
   state = {
-    friends: friends
+    Animals: Animals
   };
-  // handlePicked = id => {
-  //   const friends = this.state.friends.filter(friend => friend.id !==id);
-  //   this.setState({ friends });
+ handlePicked = event => {
+   const pick =
+   event.target.attributes.getNamedItem("name").value;
+   this.shuffleAnimals()
+   console.log("click",pick)
+ };
+ shuffleAnimals = () => {
+  this.setState(this.state.Animals = this.shuffleArray(this.state.Animals))
+}
 
-  // };
-
-  
+shuffleArray = (a) => {
+  var j, x, i;
+  for (i = a.length - 1; i > 0; i--) {
+    j = Math.floor(Math.random() * (i + 1));
+    x = a[i];
+    a[i] = a[j];
+    a[j] = x;
+  }
+  return a;
+}
   render() {
-    console.log(this.state.friends)
+
     return(
       <div>
 
       <h1 className="title"> ClickyGame</h1>
       <Wrapper>
 
-      {this.state.friends.map(friend => (
+      {this.state.Animals.map(animal => (
         <Card
-        id={friends.id}
-        key={friends.name}
-        name={friend.name}
-        image={friend.image}
-        handledPicked={this.handledPicked}
+        key={animal.id}
+        name={animal.name}
+        image={animal.image}
+        handlePicked={this.handlePicked}
         />
         ))
       }
