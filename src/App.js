@@ -3,14 +3,13 @@ import Card from "./components/Card"
 import Wrapper from "./components/Wrapper"
 import Animals from "./Animals.json";
 import Alert from "./components/Alert/index";
-import Score from "./components/Score";
 import './App.css';
-
 class App extends Component {
   state = {
     animals: Animals,
     topScore: 0,
     alertMessage: "",
+    alertWinner: "",
     score: 0
   };
   reset = _ => {
@@ -18,8 +17,7 @@ class App extends Component {
     newAnimals.forEach((value, index) => {
       value.clicked = false
     })
-    this.setState({ animals: newAnimals })
-    this.setState({ score: 0 })
+    this.setState({ animals: newAnimals, score: 0, alertWinner: ""})
   }
   handlePicked = event => {
     const pick = event.target.attributes.getNamedItem("name").value;
@@ -36,18 +34,28 @@ class App extends Component {
         if (value.name === pick) x = index
       })
       newAnimals[x].clicked = true
-      // this.score=
+      let newScore    = this.state.score + 1
+      let newTopScore =  (newScore > this.state.topScore) ? newScore : this.state.topScore
+
+      // let newTopScore = Math.max(newScore, +-this.state.topScore)
+
+      this.setState({ score: newScore });
+      this.setState({ topScore: newTopScore })
       //console.log("x",newAnimals)
       this.setState({ animals: newAnimals })
-
+      this.topScorer()
     }
     this.shuffleAnimals()
-    //console.log("click",pick, clicked)
   };
   shuffleAnimals = () => {
     this.setState({ animals: this.shuffleArray(this.state.animals) })
   }
-
+  topScorer = () => {
+    if (this.state.score === 17) {
+      this.alertWinner = "Wow you have a GOOD MEMORY!!!"
+      this.reset()
+    }
+  }
   shuffleArray = (a) => {
     var j, x, i;
     for (i = a.length - 1; i > 0; i--) {
@@ -59,16 +67,14 @@ class App extends Component {
     return a;
   }
   render() {
-
     return (
       <div>
         <h1 className="title"> ClickyGame</h1>
-        <Score scoreCard={this.score} />
+        <h3>Score: {this.state.score}</h3>
+        <h3>topScore: {this.state.topScore}</h3>
         <Alert message={this.alertMessage} />
-
-        {/* <Score/> */}
+        <Alert winner={this.alertWinner} />
         <Wrapper>
-
           {this.state.animals.map(animal => (
             <Card
               key={animal.id}
@@ -84,5 +90,4 @@ class App extends Component {
     )
   }
 };
-
 export default App;

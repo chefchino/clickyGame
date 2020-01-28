@@ -3,7 +3,7 @@ import "./style.css";
 
 const Alert = props => (
     <div className="alert">
-        {props.message}
+        {props.message} {props.winner}
     </div>
 
 

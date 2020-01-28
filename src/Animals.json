@@ -142,11 +142,5 @@
     "name": "Sea Lion",
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/California_sea_lion_in_La_Jolla_%2870568%29.jpg/1200px-California_sea_lion_in_La_Jolla_%2870568%29.jpg",
     "clicked": false
-  },
-  {
-    "id": 25,
-    "name": "Seal",
-    "image": "https://peopledotcom.files.wordpress.com/2018/04/20180326marmaladeseal08-edit.jpg",
-    "clicked": false
   }
 ]
