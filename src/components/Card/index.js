@@ -15,6 +15,7 @@ function Card(props) {
             key={props.id}
             name={props.name} 
             style={{ backgroundImage: `url(${props.image})`}}
+            clicked={props.clicked.toString()}
             >
                 {/* <img alt={props.name} src={props.image}/> */}
             </div>

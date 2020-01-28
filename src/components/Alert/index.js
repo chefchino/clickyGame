@@ -8,4 +8,4 @@ const Alert = props => (
 
 
 );
-export default ALert;
+export default Alert;

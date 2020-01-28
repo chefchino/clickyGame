@@ -3,7 +3,7 @@ import "./style.css";
 
 const Score = props => (
     <div className="scoreCard">
-        {props.score}
+        {props.type}{props.score}
     </div>
 );
 
