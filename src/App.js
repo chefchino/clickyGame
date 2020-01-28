@@ -6,7 +6,9 @@ import './App.css';
 
 class App extends Component {
   state = {
-    Animals: Animals
+    animals: Animals,
+    topScore: 0,
+    alertMessage: ""
   };
  handlePicked = event => {
    const pick =
@@ -15,7 +17,7 @@ class App extends Component {
    console.log("click",pick)
  };
  shuffleAnimals = () => {
-  this.setState(this.state.Animals = this.shuffleArray(this.state.Animals))
+  this.setState({animals: this.shuffleArray(this.state.animals)})
 }
 
 shuffleArray = (a) => {
@@ -32,11 +34,16 @@ shuffleArray = (a) => {
 
     return(
       <div>
-
       <h1 className="title"> ClickyGame</h1>
+        <Alert>
+
+        </Alert>
+        <Score>
+
+        </Score>
       <Wrapper>
 
-      {this.state.Animals.map(animal => (
+      {this.state.animals.map(animal => (
         <Card
         key={animal.id}
         name={animal.name}
